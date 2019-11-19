@@ -1,0 +1,22 @@
+.header {
+  box-shadow:  0 0 3px 2px #00000069;
+  margin: 15px 0;
+
+
+}
+
+.header__menu {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.header__link {
+  padding: 10px 15px;
+  text-transform: uppercase;
+  &:hover {
+    text-decoration: underline;
+    background: #d3d3d3;
+
+  }
+}
