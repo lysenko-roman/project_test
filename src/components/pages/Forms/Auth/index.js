@@ -1,62 +1,125 @@
 import React from 'react';
 import './style.scss';
 
- class Auth extends React.Component {
 
-     constructor (props) {
-         super(props);
-         this.state = {
-             username: '',
-             family: '',
-         };
+const USERS = [
+    {
+        id: 'w',
+        value: 'Женский',
+        title: 'Женский',
+        cart: 'пластиковая карта',
+        cartTitle: 'пластиковая карта',
+    },
+
+    {
+        id: 'm',
+        value: 'Мужской',
+        title: 'Мужской',
+        cart: 'мобильное приложение',
+        cartTitle: 'мобильное приложение',
+
+    },
+
+]
+
+
+class Auth extends React.Component {
+
+     state = {
+             inputNameText: '',
+             inputFamilyText: '',
+             selectGenderText: '',
+             selectProgramText: '',
+             showData: {
+                 name: '',
+                 family: '',
+                 gender: '',
+                 program: '',
+             }
+
      }
 
+        handleInputNameChange = ({target: {value}}) => {
 
-
-     mySubmitHandler = (event) => {
-         event.preventDefault();
-         let family = this.state.family;
-
+            this.setState({
+                inputNameText: value,
+            })
      }
 
-     myChangeHandler = (event) => {
-        let nam = event.target.name;
-        let val = event.target.value;
-        this.setState({[nam]:val});
+        handleInputFamilyChange = ({target: {value}}) => {
+
+            this.setState({
+                inputFamilyText: value,
+            })
      }
 
-handleClick = (event) => {
-    let fullName = this.state.username + '' + this.state.family;
-    this.setState({Name: fullName});
-}
+        handleSelectGenderChange = ({target: {value}}) => {
 
-     render  () {
+            this.setState({
+                selectGenderText: value,
+            })
+        }
+
+        handleSelectProgramChange = ({target: {value}}) => {
+
+            this.setState({
+                selectProgramText: value,
+            })
+        }
+
+        handleShow = (e) => {
+         e.preventDefault();
+         const {inputNameText, inputFamilyText, selectGenderText, selectProgramText} = this.state;
+         this.setState({
+             inputNameText: '',
+             inputFamilyText: '',
+             selectGenderText: '',
+             selectProgramText: '',
+             showData: {
+                 name: inputNameText,
+                 family: inputFamilyText,
+                 gender: selectGenderText,
+                 program: selectProgramText,
+             }
+         })
+     }
+
+render () {
+
+         const {inputNameText, inputFamilyText, selectGenderText, selectProgramText, showData} = this.state;
+         const {name, family, gender, program} = showData;
          return (
              <div >
              <h1>Авторизация</h1>
-             <form  className='AuthForm' onSubmit={this.mySubmitHandler}>
+             <form  className='AuthForm' >
              <label>Имя</label>
-             <input type='text' name='username'  onChange={this.myChangeHandler} placeholder='Имя' />
+             <input type='text' name='name' value={inputNameText}  onChange={this.handleInputNameChange} placeholder='Имя' />
              <label>Фамилия</label>
-             <input type='text' name='family' onChange={this.myChangeHandler} placeholder='Фамилия' />
-             <label>
+             <input type='text' name='family' value={inputFamilyText} onChange={this.handleInputFamilyChange} placeholder='Фамилия' />
+             <label >
              Пол
-             <select>
-
-             <option value=''>женский</option>
-             <option value=''>мужской</option>
+             <select  value={selectGenderText} onChange={this.handleSelectGenderChange} >
+             {USERS.map(({id, value, title})=> (
+                 <option key={id} value={value} >{title}</option>
+                 ))  }
              </select>
              </label>
              <label>
              Программа лояльности
-         <select>
-         <option value=''>пластиковая карта</option>
-         <option value=''>мобильное приложение</option>
-         </select>
+         <select  value={selectProgramText} onChange={this.handleSelectProgramChange}>
+        {USERS.map(({id, cart, cartTitle})=> (
+                <option key={id} cart={cart} >{cartTitle}</option>
+))  }</select>
          </label>
-         <button onClick={this.handleClick}>Сохранить</button>
+         <button onClick={this.handleShow}>Сохранить</button>
              </form>
-    <h2> Your full name is {this.state.Name} </h2>
+    <h2> Your full name is</h2>
+
+    <h2>{name}</h2>
+    <h2>{family}</h2>
+    <h2>{gender}</h2>
+    <h2>{program} </h2>
+
     </div>
 
 

@@ -9,6 +9,7 @@ import React from 'react';
         <h1>
             Привет, меня зовут Clients!
         </h1>
+        <button >Регистрация нового клиента</button>
         </div>
     )
     }
