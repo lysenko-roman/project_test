@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+
 }
 
 body, ul {
@@ -23,9 +24,13 @@ a {
 
 }
 
+header, main {
+  background: azure;
+}
 .page >div {
   min-height: 600px;
   box-shadow:  0 0 3px 2px #00000069;
   padding: 15px;
   animation: ShowPage 5s;
+
 }

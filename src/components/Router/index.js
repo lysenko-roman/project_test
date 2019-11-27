@@ -1,8 +1,8 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
-import Clients from '../pages/Client';
+import Clients from '../pages/Clients';
 import Author from '../pages/Author';
-import Registration from '../pages/Forms';
+import Form from '../pages/Form';
 
 
 export default () => {
@@ -11,7 +11,7 @@ export default () => {
 
             <Route path="/clients" component={Clients} />
 
-            <Route path="/registration" component={Registration} />
+            <Route path="/registration" component={Form} />
 
             <Route path="/author" component={Author} />
 
